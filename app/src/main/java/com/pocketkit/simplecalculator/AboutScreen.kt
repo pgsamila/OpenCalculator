@@ -53,7 +53,7 @@ fun AboutScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_app_icon),
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
                     contentDescription = "App Icon",
                     modifier = Modifier.fillMaxSize().padding(16.dp)
                 )

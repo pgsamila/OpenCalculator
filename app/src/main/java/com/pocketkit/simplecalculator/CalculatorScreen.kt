@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -71,6 +72,8 @@ fun CalculatorScreen(
     val buttonShape = if (state.isExpanded) RoundedCornerShape(16.dp) else androidx.compose.foundation.shape.CircleShape
     val buttonAspectRatio = if (state.isExpanded) 2f else 1f
 
+    val uriHandler = LocalUriHandler.current
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -120,6 +123,20 @@ fun CalculatorScreen(
                     onClick = {
                         showMenu = false
                         onAction(CalculatorAction.ClearHistory)
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Privacy and Policy") },
+                    leadingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.info), // Using info icon as placeholder
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    },
+                    onClick = {
+                        showMenu = false
+                        uriHandler.openUri("https://github.com/pgsamila/OpenCalculator/wiki/Privacy-Policy")
                     }
                 )
                 DropdownMenuItem(
